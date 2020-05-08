@@ -2,18 +2,17 @@ package men.snechaev.news_app.di
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.picasso.OkHttp3Downloader
-import com.squareup.picasso.Picasso
 import dagger.Module
 import dagger.Provides
 import dagger.Reusable
-import io.reactivex.schedulers.Schedulers
 import men.snechaev.news_app.BASE_URL
 import men.snechaev.news_app.BuildConfig
+import men.snechaev.news_app.network.WebService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 @Module
@@ -61,8 +60,6 @@ object NetModule {
     ): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
-//            .addConverterFactory()
             .addConverterFactory(GsonConverterFactory.create(gson))
             .client(okHttpClient)
             .build()
