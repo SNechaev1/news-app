@@ -2,7 +2,6 @@ package men.snechaev.news_app.di
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.picasso.OkHttp3Downloader
 import dagger.Module
 import dagger.Provides
