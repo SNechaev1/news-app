@@ -32,7 +32,7 @@ constructor(
         for(article in newsRaw.articles!!) {
 //            Log.d("article", article.toString())
             val news: News = News(page = page, title = article.title, description = article.description,
-                urlToImage = article.urlToImage, publishedAt = article.publishedAt)
+                urlToImage = article.urlToImage, publishedAt = article.publishedAt, url = article.url)
             newsList.add(news)
         }
         insertNewsIntoDb(newsList)
@@ -44,9 +44,9 @@ constructor(
         newsDao.insertAll(list)
     }
 
-    fun getNewsFromDb(): List<News> {
-        return newsDao.getAll()
-    }
+//    fun getNewsFromDb(): List<News> {
+//        return newsDao.getAll()
+//    }
 
     fun getNewsByPageFromDb(page: Int): List<News> {
         return newsDao.getByPage(page)
