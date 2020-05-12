@@ -1,4 +1,4 @@
-package men.snechaev.news_app.data
+package men.snechaev.news_app.network
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName

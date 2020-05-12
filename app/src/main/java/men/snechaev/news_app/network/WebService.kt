@@ -1,6 +1,6 @@
 package men.snechaev.news_app.network
 
-import men.snechaev.news_app.data.NewsRaw
+import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -13,6 +13,6 @@ interface WebService {
         @Query("sortBy") sortBy: String = "publishedAt",
         @Query("apiKey") apiKey: String = "26eddb253e7840f988aec61f2ece2907",
         @Query("page") page: Int
-    ): NewsRaw
+    ): Response<NewsRaw>
 
 }
