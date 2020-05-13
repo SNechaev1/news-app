@@ -1,9 +1,7 @@
 package men.snechaev.news_app.data
 
 import android.util.Log
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.withContext
+import men.snechaev.news_app.network.NewsRaw
 import men.snechaev.news_app.network.WebService
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -14,17 +12,6 @@ constructor(
     val webService: WebService,
     val newsDao: NewsDao
 ) {
-
-
-    fun requestNews(page: Int) {
-        runBlocking {
-            withContext(Dispatchers.IO) {
-                val newsRaw = webService.getNews(page = page)
-                Log.d("net", newsRaw.toString())
-                convertNewsRawToNews(page, newsRaw = newsRaw)
-            }
-        }
-    }
 
     // we need only several field from news article
     fun convertNewsRawToNews(page: Int, newsRaw: NewsRaw): List<News> {
