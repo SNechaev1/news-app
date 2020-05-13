@@ -2,17 +2,19 @@ package men.snechaev.news_app.ui.newslist
 
 import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import men.snechaev.news_app.App
 import men.snechaev.news_app.R
-
-import men.snechaev.news_app.ui.dummy.DummyContent
-import men.snechaev.news_app.ui.dummy.DummyContent.DummyItem
+import men.snechaev.news_app.data.News
+import javax.inject.Inject
 
 /**
  * A fragment representing a list of Items.
@@ -21,13 +23,19 @@ import men.snechaev.news_app.ui.dummy.DummyContent.DummyItem
  */
 class NewsFragment : Fragment() {
 
-    // TODO: Customize parameters
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    @Inject
+    lateinit var viewModel: NewsViewModel
+
     private var columnCount = 1
 
     private var listener: OnListFragmentInteractionListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        App.get().appComponent.inject(this)
 
         arguments?.let {
             columnCount = it.getInt(ARG_COLUMN_COUNT)
@@ -47,11 +55,9 @@ class NewsFragment : Fragment() {
                     columnCount <= 1 -> LinearLayoutManager(context)
                     else -> GridLayoutManager(context, columnCount)
                 }
-                adapter =
-                    MyNewsRecyclerViewAdapter(
-                        DummyContent.ITEMS,
-                        listener
-                    )
+                adapter = NewsAdapter()
+                viewModel.newsList.observe(viewLifecycleOwner, Observer { pagedList -> (adapter as NewsAdapter).submitList(pagedList) })
+
             }
         }
         return view
@@ -84,7 +90,7 @@ class NewsFragment : Fragment() {
      */
     interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        fun onListFragmentInteraction(item: DummyItem?)
+        fun onListFragmentInteraction(item: News?)
     }
 
     companion object {
