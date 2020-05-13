@@ -1,8 +1,9 @@
-package men.snechaev.news_app
+package men.snechaev.news_app.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import men.snechaev.news_app.ui.dummy.DummyContent
+import androidx.appcompat.app.AppCompatActivity
+import men.snechaev.news_app.R
+import men.snechaev.news_app.data.News
 import men.snechaev.news_app.ui.newslist.NewsFragment
 
 class MainActivity : AppCompatActivity(), NewsFragment.OnListFragmentInteractionListener {
@@ -12,7 +13,8 @@ class MainActivity : AppCompatActivity(), NewsFragment.OnListFragmentInteraction
         setContentView(R.layout.activity_main)
     }
 
-    override fun onListFragmentInteraction(item: DummyContent.DummyItem?) {
+    override fun onListFragmentInteraction(item: News?) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
+
 }
