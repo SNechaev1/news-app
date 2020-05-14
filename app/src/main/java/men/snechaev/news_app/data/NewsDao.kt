@@ -17,9 +17,11 @@ interface NewsDao {
     @Query("SELECT * FROM news WHERE id = :id")
     fun getById(id: Int): DataSource.Factory<Int, News>
 
-
     @Query("SELECT * FROM news WHERE page = :page")
     fun getByPage(page: Int): List<News>
+
+    @Query("SELECT max(page) FROM news")
+    fun getLastPage(): Int
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(news: List<News>)
