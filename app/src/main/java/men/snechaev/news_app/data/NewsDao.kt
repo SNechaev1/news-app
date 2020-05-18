@@ -24,5 +24,8 @@ interface NewsDao {
     fun getLastPage(): Int
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(news: List<News>)
+    suspend fun insertAll(news: List<News>)
+
+    @Query("DELETE FROM news")
+    fun deleteAll()
 }
