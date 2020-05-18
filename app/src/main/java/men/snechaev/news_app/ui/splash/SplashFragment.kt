@@ -12,11 +12,7 @@ import men.snechaev.news_app.R
 
 class SplashFragment : Fragment(), View.OnClickListener {
 
-    lateinit var navController: NavController
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    private lateinit var navController: NavController
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

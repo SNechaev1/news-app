@@ -25,4 +25,5 @@ class NewsAdapter : PagedListAdapter<News, NewsViewHolder>(NEWS_COMPARATOR) {
                     oldItem == newItem
         }
     }
+
 }
