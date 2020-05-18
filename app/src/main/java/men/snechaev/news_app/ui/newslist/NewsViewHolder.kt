@@ -2,6 +2,7 @@ package men.snechaev.news_app.ui.newslist
 
 import android.content.Intent
 import android.net.Uri
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,16 +20,19 @@ class NewsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     private val viewDate: TextView = view.findViewById(R.id.news_date)
     private val viewImg: ImageView = view.findViewById(R.id.news_img)
 
-    private var news: News? = null
+    private var _news: News? = null
 
     init {
         view.setOnClickListener {
-            news?.url?.let { url ->
+            _news?.url?.let { url ->
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
                 view.context.startActivity(intent)
             }
+//            Log.d("viewHolderListener",layoutPosition.toString())
+
         }
     }
+
 
     fun bind(news: News?) {
         if (news == null) {
@@ -38,11 +42,13 @@ class NewsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             viewImg.visibility = View.GONE
             viewDate.visibility = View.GONE
         } else {
+            _news = news
             showNewsData(news)
         }
     }
 
     private fun showNewsData(news: News) {
+        Log.d("showNewsData", news.toString())
 //        this.news = news
         with(news) {
             viewTitle.text = title
@@ -61,4 +67,5 @@ class NewsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             return NewsViewHolder(view)
         }
     }
+
 }
