@@ -18,14 +18,8 @@
         android:id="@+id/newsFragment"
         android:name="men.snechaev.news_app.ui.newslist.NewsFragment"
         android:label="fragment_news_list"
-        tools:layout="@layout/fragment_news_list" >
-        <action
-            android:id="@+id/action_newsFragment_to_detailFragment"
-            app:destination="@id/detailFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/detailFragment"
-        android:name="men.snechaev.news_app.ui.detail.DetailFragment"
-        android:label="fragment_detail"
-        tools:layout="@layout/fragment_detail" />
+        tools:layout="@layout/fragment_news_list" />
 </navigation>
+
+
+
