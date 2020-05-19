@@ -9,5 +9,6 @@
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
     app:layoutManager="LinearLayoutManager"
+    tools:listitem="@layout/news_view_item"
     tools:context=".ui.newslist.NewsFragment"
-    tools:listitem="@layout/fragment_news" />
+    />
