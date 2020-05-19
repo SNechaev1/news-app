@@ -22,6 +22,10 @@ class App : Application() {
         private var INSTANCE: App? = null
         @JvmStatic
         fun get(): App = INSTANCE!!
+
+        fun appContext() : Context {
+            return INSTANCE!!.applicationContext
+        }
     }
 
     @VisibleForTesting
